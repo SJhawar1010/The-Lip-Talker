@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Lip Talker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h1 class="animate__animated animate__heartBeat">The Lip Talker</h1>
+        </div>
+        <div class="menu">
+          <a href="{{ url_for('index') }}"> Home </a>
+          <a href="{{ url_for('static', filename='extra/TLTPR.pdf') }}" target="_blank" >About</a>
+          <a href="{{ url_for('static', filename='extra/GUIDE.png') }}" target="_blank"> Guide </a>
+          <a href="{{ url_for('developers') }}">Developers</a>
+        </div>
+      </nav>
+
+      <main>
+        <section>
+          <h1>Welcome to The Lip Talker</h1>
+          <h3>Where Video meets Audio</h3>
+          <p> "Decipher Conversations with the Art of Lip Reading - The Lip Talker." </p>
+
+          <div class="upload-container">
+            <label for="file-upload" class="upload-label">Choose a File</label>
+            <input type="file" id="file-upload" class="upload-input" accept=".mp4">
+            <span class="file-name">No file selected</span>
+          </div>
+
+          <script>
+            const fileInput = document.getElementById("file-upload");
+            const fileNameDisplay = document.querySelector(".file-name");
+
+            fileInput.addEventListener("change", function () {
+              const fileName = this.files[0].name;
+              fileNameDisplay.textContent = fileName;
+            });
+          </script>
+
+          <a href="#" class="btntwo" id="uploadLink">Upload</a>
+          <a href="#" class="btnone" id="processBtn">Process</a>
+          <a class="btntwo" id="translateButton">Translate</a>
+          <a href="{{ url_for('index') }}" class="btnone">Reset</a>
+
+          <div id="popup" class="popup">
+            <p>Video Successfully Uploaded!</p>
+            <button id="closeBtn">Close</button>
+          </div>
+
+          <div class="output-container">
+            <div class="output-left">
+              <textarea id="output-text" class = "fromText" placeholder="Video Output Text"></textarea>
+              <div class="icons">
+                <span class="bx bx-volume-full volume-icon from"></span>
+              </div>
+            </div>
+            <div class="output-right">
+              <select id="toLanguage" class="toLanguage">
+
+              </select>
+              <div class="translated-textarea">
+                <textarea id="output-text" class = "toTranslate" placeholder="Video Output Translated Text"></textarea>
+                <div class="icons">
+                  <span class="bx bx-volume-full volume-icon to"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </header>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/main1.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/language.js') }}" defer></script>
+    <script>
+      document.getElementById('processBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+    
+        const fileInput = document.getElementById('file-upload');
+        const file = fileInput.files[0];
+    
+        if (file) {
+          const formData = new FormData();
+          formData.append('video', file);
+    
+          fetch('/process', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('output-text').value = data.text;
+          })
+          .catch(error => console.error('Error:', error));
+        } else {
+          alert('Please upload a video file first.');
+        }
+      });
+    </script>
+    
+  </body>
+</html>

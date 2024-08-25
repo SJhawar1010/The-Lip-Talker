@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url("../images/bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav {
+    width: 100%;
+    height: 15vh;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 0 2rem;
+}
+
+nav .logo {
+    width: 25%;
+    text-align: center;
+}
+
+nav .logo .animate__animated.animate__heartBeat {
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-delay: 2s;
+}
+
+nav .menu {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .menu a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav .menu a:hover {
+    color: #00b894;
+}
+
+main {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+section .upload-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+section .upload-container .upload-input {
+    display: none;
+}
+
+section .upload-container .upload-label {
+    padding: 10px 15px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s ease;
+}
+
+.upload-label:hover {
+    background: #00b894;
+    color: white;
+}
+
+section .upload-container .file-name {
+    margin-left: 10px;
+}
+
+section h1 {
+    font-size: 35px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px black;
+}
+
+section h3 {
+    margin: 30px 0 20px 0;
+    font-size: 35px;
+    font-weight: 700;
+    text-shadow: 2px 1px 5px black;
+    text-transform: uppercase;
+}
+
+section p {
+    font-size: 25px;
+    margin-bottom: 25px;
+    word-spacing: 2px;
+    text-shadow: 1px 1px 1px black;
+}
+
+section a {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border-radius: 4px;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-block;
+    justify-content: space-between;
+    transition: all .3s ease;
+}
+
+section .btnone {
+    background: whitesmoke;
+    color: black;
+}
+
+section .btntwo {
+    background: #00b894;
+    color: white;
+}
+
+.btnone:hover {
+    background: #00b894;
+    color: white;
+}
+
+.btntwo:hover {
+    background: whitesmoke;
+    color: black;
+}
+
+.output-container {
+    display: flex;
+    align-items: stretch;
+    margin-top: 20px;
+    height: 250px;
+    gap: 20px;
+}
+
+.output-container .icons {
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
+    display: flex;
+}
+
+.icons .bx {
+    width: 35px;
+    height: 35px;
+    background: #ddd;
+    text-align: center;
+    line-height: 35px;
+    font-size: 18px;
+    color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+.icons .bx:hover {
+    background: #606060;
+    color: wheat;
+}
+
+.output-left, .output-right {
+    flex: 1;
+    margin: 10px;
+    position: relative;
+}
+
+.output-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#output-text {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+}
+
+.volume-icon {
+    color: black;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.translated-textarea {
+    position: relative;
+    height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav .logo, nav .menu {
+        width: 100%;
+        justify-content: center;
+    }
+
+    nav .menu {
+        flex-direction: column;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    section h1, section h3, section p {
+        font-size: 5vw;
+    }
+
+    section a {
+        font-size: 4vw;
+        padding: 1rem 2rem;
+    }
+
+    .output-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .output-left, .output-right {
+        margin: 0;
+        width: 100%;
+    }
+}
